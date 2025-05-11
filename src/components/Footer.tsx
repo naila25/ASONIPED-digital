@@ -14,8 +14,8 @@ const Footer = () => {
         
         <div>
           <h3 className="text-base font-semibold mb-4 border-b border-neutral-700 pb-2">Contacto</h3>
-          <p className="flex items-center gap-2 mb-2">📞 Oficina: (506) 2685-1212</p>
-          <p className="flex items-center gap-2">📧 asoniped@gmail.com</p>
+          <p className="flex items-center gap-2 mb-2"> Oficina: (506) 2685-1212</p>
+          <p className="flex items-center gap-2"> asoniped@gmail.com</p>
         </div>
 
         
