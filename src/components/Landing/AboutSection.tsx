@@ -1,4 +1,4 @@
-import quienesSomosImg from "../assets/quienessomos.png";
+import quienesSomosImg from "../../assets/quienessomos.png";
 
 const AboutSection = () => {
     return (

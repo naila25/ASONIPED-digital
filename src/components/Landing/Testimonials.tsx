@@ -1,4 +1,4 @@
-import {testimonials} from '../constanst/index.tsx';
+import {testimonials} from '../../constanst/index';
 
 const Testimonials = () => { 
     return (

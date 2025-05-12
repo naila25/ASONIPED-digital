@@ -1,5 +1,5 @@
 import {CheckCircle2} from 'lucide-react';
-import { CardsOptions} from '../constanst';
+import { CardsOptions} from '../../constanst/index';
 
 const Modulos =() => {
     return (

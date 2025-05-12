@@ -1,4 +1,4 @@
-import { features } from "../constanst";
+import { features } from '../../constanst/index';
 
 const Achievements = () => {
   return (
