@@ -1,4 +1,5 @@
 import quienesSomosImg from "../../assets/quienessomos.png";
+import { Link } from "react-router-dom";
 
 const AboutSection = () => {
     return (
@@ -33,18 +34,12 @@ const AboutSection = () => {
               </div>
             </div>
             <div className="flex justify-center lg:justify-start gap-4 mt-8">
-              <a 
-                href="#" 
+              <Link
+                to="Conocenos" 
                 className="bg-gradient-to-r from-orange-500 to-orange-800 py-3 px-6 rounded-md text-sm"
               >
-                Ver Talleres
-              </a>
-              <a 
-                href="#" 
-                className="border py-3 px-6 rounded-md text-sm"
-              >
-                Nuestro equipo
-              </a>
+                Conocenos más 
+              </Link>
             </div>
           </div>
         </div>

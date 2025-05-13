@@ -1,4 +1,4 @@
-import { communityLinks, platformLinks } from "../../constanst/index";
+//import { communityLinks, platformLinks } from "../../constanst/index";
 
 const Footer = () => {
   return (

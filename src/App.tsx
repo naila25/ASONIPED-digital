@@ -1,37 +1,25 @@
+import { Routes, Route } from 'react-router-dom';
 import NavBar from "./components/Landing/NavBar"
-import HeroSection from "./components/Landing/HeroSection"
-import AboutSection from "./components/Landing/AboutSection"
-import Modulos from "./components/Landing/Modulos"
-import Achievements from "./components/Landing/Achievements"  
-import Testimonials from "./components/Landing/Testimonials"
 import Footer from "./components/Landing/Footer"
-import VolunteersSection from "./components/volunteers/VolunteersSection"
-import Donaciones from "./components/Donation/Donaciones"
+import HomePage from './Pages/Home.page';
+import FormularioDonacion from './components/Donation/FormularioDonacion';
+import DonacionesPage from './Pages/Donaciones.page';
 
 function App() {
-  
   return (
-   <>
-
-    <NavBar ></NavBar>
     <div className="max-w-7xl  mx-auto pt-10 px-6">
-    <HeroSection></HeroSection>
-    <div className=" max-w-7x1 mx auto pt-10 px-6">
-    <AboutSection></AboutSection>
-    <Modulos></Modulos>
-    <Donaciones></Donaciones>
-    <VolunteersSection></VolunteersSection>
-    <Achievements></Achievements> 
-    <Testimonials></Testimonials>
+      <NavBar />
+      <div className="max-w-7xl mx-auto pt-10 px-6">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/donaciones" element={<DonacionesPage />} />
+          <Route path="/formularioDonacion" element={<FormularioDonacion />} />
+          
+        </Routes>
+      </div>
+      <Footer />
     </div>
-    <Footer></Footer>
-    </div>
-
-    
-
-   </>
-  )
+  );
 }
 
-export default App
-
+export default App;
