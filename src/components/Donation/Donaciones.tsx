@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 
 const Donaciones: React.FC = () => {
   return (
@@ -36,9 +36,11 @@ const Donaciones: React.FC = () => {
                 <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
                 <p className="text-sm text-gray-600 mb-4">{item.description}</p>
               </div>
-              <button className="mt-auto bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 transition">
+              <Link
+                 to='/FormularioDonacion'
+                 className="mt-auto bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 transition">
                 Quiero donar
-              </button>
+              </Link>
             </div>
           </div>
         ))}
