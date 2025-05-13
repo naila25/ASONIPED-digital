@@ -6,6 +6,7 @@ import Achievements from "./components/Landing/Achievements"
 import Testimonials from "./components/Landing/Testimonials"
 import Footer from "./components/Landing/Footer"
 import VolunteersSection from "./components/volunteers/VolunteersSection"
+import Donaciones from "./components/Donation/Donaciones"
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
     <div className=" max-w-7x1 mx auto pt-10 px-6">
     <AboutSection></AboutSection>
     <Modulos></Modulos>
+    <Donaciones></Donaciones>
     <VolunteersSection></VolunteersSection>
     <Achievements></Achievements> 
     <Testimonials></Testimonials>
