@@ -35,7 +35,7 @@ const ConocenosSection = () => {
         <h3 className="text-orange-600 text-xl font-bold mb-2">NUESTRO PROPÓSITO</h3>
         <h4 className=" text-black text-2xl font-semibold mb-2">Misión</h4>
         <p className="max-w-3xl mx-auto text-neutral-700">
-          <strong>Impulsar proyectos educativos en comunidades indígenas y rurales en el mundo</strong>, a través de estrategias de colaboración y programas que permitan dar acceso a educación equitativa y de calidad a niños, niñas, jóvenes y adultos, con el fin de apoyar el desarrollo integral de la comunidad y con ello la reducción de desigualdades.
+          ASONIPED es una Organización No Gubernamental, sin fines de lucro, que brinda atención integral con la ayuda de nuestros colaboradores para mejorar la calidad de vida de las personas con discapacidad y sus familias, en el territorio de Nicoya, Hojancha y Nandayure.
         </p>
       </div>
 
@@ -43,17 +43,17 @@ const ConocenosSection = () => {
         <h3 className="text-orange-600 text-xl font-bold mb-2">NUESTRA META</h3>
         <h4 className=" text-black text-2xl font-semibold mb-2">Visión</h4>
         <p className="max-w-3xl mx-auto text-neutral-700">
-          Ser una organización que provea soluciones educativas equitativas a niños, jóvenes y adultos que viven en comunidades indígenas y rurales vulnerables, reconocida por la calidad de sus servicios, y la excelencia de nuestro capital humano.
+          Ser una organización de vanguardia en temas de discapacidad en pro del desarrollo y participación integral de formación humana para nuestra población meta, que favorezca su plena inclusión como ciudadanos de pleno derecho. Siendo un modelo de nuevas prácticas e innovación tecnológica, con énfasis en el uso de tecnologías limpias.
         </p>
       </div>
 
       <div className="text-center mb-8">
-        <h3 className="text-orange-600 text-xl font-bold mb-2">NUESTRAS RAÍCES</h3>
+        <h3 className="text-orange-600 text-xl font-bold mb-2">NUESTROS VALORES</h3>
         <p className="max-w-2xl mx-auto text-neutral-700 mb-10">
-          Nuestras raíces son los valores que nos caracterizan y que nos ayudan a guiar nuestro camino, siempre con los pies bien puestos sobre la tierra y cerquita de la comunidad.
+          Nuestros valores que nos caracterizan y que nos ayudan a guiar nuestro camino, siempre con los pies bien puestos sobre la tierra y cerquita de la comunidad.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          {['Solidaridad', 'Confianza', 'Coherencia', 'Justicia', 'Respeto', 'Transparencia'].map((valor, index) => (
+          {['Solidaridad', 'Empatía', 'Responsabilidad Social', 'Honestidad', 'Respeto', 'Tolerancia', 'Credibilidad'].map((valor, index) => (
             <div key={index} className="bg-orange-300 text-white px-6 py-3 rounded-full text-lg font-medium">
               {valor}
             </div>
