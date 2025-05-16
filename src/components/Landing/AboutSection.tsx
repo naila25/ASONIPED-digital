@@ -1,5 +1,5 @@
 import quienesSomosImg from "../../assets/quienessomos.png";
-import { Link } from "react-router-dom";
+import { Link } from '@tanstack/react-router';
 
 const AboutSection = () => {
     return (
@@ -34,11 +34,11 @@ const AboutSection = () => {
               </div>
             </div>
             <div className="flex justify-center lg:justify-start gap-4 mt-8">
-              <Link
-                to="Conocenos" 
-                className="bg-gradient-to-r from-orange-500 to-orange-800 py-3 px-6 rounded-md text-sm"
+              <Link 
+                to="/conocenos"
+                className="border py-3 px-6 rounded-md text-sm hover:bg-orange-500 hover:text-white transition-colors"
               >
-                Conocenos más 
+               Conocenos Mas
               </Link>
             </div>
           </div>

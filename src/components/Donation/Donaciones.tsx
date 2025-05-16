@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@tanstack/react-router';
 
 const Donaciones: React.FC = () => {
   return (
     <section className="my-12 px-6 text-gray-800">
-      <h2 className="text-amber-50 text-3xl font-bold text-center mb-4">¿Por qué ayudar a ASONIPED?</h2>
+      <h2 className="text-black text-5xl text-center mb-4 py-6">¿Por qué ayudar a ASONIPED?</h2>
       <p className="max-w-3xl mx-auto text-center text-lg mb-12">
         Las donaciones a ASONIPED permiten ofrecer paseos recreativos a los niños, renovar el mobiliario como pupitres
         y mantener en buen estado las instalaciones de la organización. Cada aporte suma a mejorar su calidad de vida.
@@ -37,15 +37,14 @@ const Donaciones: React.FC = () => {
                 <p className="text-sm text-gray-600 mb-4">{item.description}</p>
               </div>
               <Link
-                 to='/FormularioDonacion'
-                 className="mt-auto bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 transition">
+                to="/donaciones/formulario"
+                className="mt-auto bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 transition">
                 Quiero donar
               </Link>
             </div>
           </div>
         ))}
       </div>
-      
     </section>
   );
 };

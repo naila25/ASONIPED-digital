@@ -2,6 +2,7 @@ import logo from "../../assets/logoasoniped.png";
 import { navItems } from "../../constanst/index";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Link } from '@tanstack/react-router';
 
 const NavBar = () => {
 
@@ -14,8 +15,10 @@ const NavBar = () => {
         <div className="container mx-auto px-4 text-sm relative">
             <div className="flex justify-between items-center">
                 <div className="flex items-center flex-shrink-0">
-                    <img className="h-15 w-15 mr-7  rounded-full" src={logo} alt="logo" />
-                    <span className="text-xl tracking-tight">Asoniped Digital</span>
+                    <Link to="/" className="flex items-center flex-shrink-0">
+                        <img className="h-15 w-15 mr-7 rounded-full" src={logo} alt="logo" />
+                        <span className="text-xl tracking-tight">Asoniped Digital</span>
+                    </Link>
                 </div>
                 <ul className="hidden lg:flex ml-14 space-x-12">
                     {navItems.map((item, index) => (
@@ -25,12 +28,14 @@ const NavBar = () => {
                     ))}
                 </ul>
                 <div className="hidden lg:flex justify-center space-x-12 items-center mr-6">
-                    <a href="#" className="py-2 px-3 border rounded-md">
+                    <Link to="/admin-login" className="py-2 px-3 border rounded-md">
                         Login
-                    </a>
+                    </Link>
+                    {/*
                     <a href="#" className="bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 rounded-md mr-4">
                        Crear Cuenta 
                     </a>
+                    */}
                 </div>    
                 <div className="lg:hidden md:flex flex-col justify-end">
                     <button onClick={toggleNavbar}>
@@ -39,7 +44,7 @@ const NavBar = () => {
                 </div>
             </div>
             {mobileDrawerOpen && (
-                    <div className="fixed right-0 z-20 bg-neutral-900 w-full p-12 flex delx-col justify-between items-center lg:hidden">
+                    <div className="fixed right-0 z-20  w-full p-12 flex delx-col justify-between items-center lg:hidden">
                         <ul >
                             {navItems.map((item, index) => (
                                 <li key={index} className="py-4">
@@ -48,12 +53,14 @@ const NavBar = () => {
                             ))}
                         </ul>
                         <div className="flex space-x-6">
-                            <a href="#" className="py-2 px-3 border rounded-md">
+                            <Link to="/admin-login" className="py-2 px-3 border rounded-md">
                                 Login
-                            </a>
+                            </Link>
+                            {/*
                             <a href="#" className="py-2 px-3 rounded-md bg-gradient-to-r from-orange-500 to-orange-800">
                                 Crear Cuenta 
                             </a>
+                            */}
                         </div>
                     </div>
                 )}
@@ -63,3 +70,5 @@ const NavBar = () => {
 }
 
 export default NavBar
+
+ 

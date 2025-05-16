@@ -1,10 +1,17 @@
-
-import quienesSomosImg from "../assets/profile-pictures/quienessomos.png"; 
- 
+import quienesSomosImg from "../../assets/quienessomos.png"; 
+import { Link } from '@tanstack/react-router';
+import { X } from 'lucide-react';
 
 const ConocenosSection = () => {
   return (
-    <section className="py-16 px-4 max-w-7xl mx-auto">
+    <section className="py-16 px-4 max-w-7xl mx-auto relative">
+      <Link 
+        to="/"
+        className="absolute top-4 right-4 p-2 rounded-full hover:bg-orange-100 transition-colors"
+        aria-label="Cerrar página"
+      >
+        <X className="w-6 h-6 text-orange-600" />
+      </Link>
      
       <h2 className="text-4xl font-bold text-center text-orange-600 mb-16">Conócenos</h2>
 
