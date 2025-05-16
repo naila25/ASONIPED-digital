@@ -8,6 +8,7 @@ import AdminLogin from '../pages/admin/AdminLogin';
 import VolunteersSubDashboard from '../pages/volunteer/VolunteersSubDashboard';
 import DonacionesPage from '../pages/donaciones/Donaciones.page';
 import FormularioDonacion from '../components/Donation/FormularioDonacion';
+import ConocenosSection from '../components/Landing/Conocenos';
 
 // Lazy-loaded admin pages with Suspense boundaries
 const AdminDashboard = lazy(() => import('../pages/admin/AdminDashboard'));
@@ -44,6 +45,12 @@ const donacionesRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: 'donaciones',
   component: DonacionesPage,
+});
+
+const conocenosRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: 'conocenos',
+  component: ConocenosSection,
 });
 
 const formularioDonacionRoute = createRoute({
@@ -96,6 +103,7 @@ const routeTree = rootRoute.addChildren([
   volunteersRoute,
   adminLoginRoute,
   donacionesRoute,
+  conocenosRoute,
   formularioDonacionRoute,
   adminRoute.addChildren([
     volunteersAdminRoute.addChildren([
