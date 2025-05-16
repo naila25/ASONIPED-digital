@@ -35,7 +35,7 @@ const Footer = () => {
 
       
       <div className="mt-10 text-center text-white text-sm">
-        <p>Copyright 2025 © ASONIPED. Derechos Reservados</p>
+        <p>Copyright 2025 © ASONIPED. Derechos Reservados R</p>
         <div className="mt-4">
           <a href="#" className="text-white text-lg"></a> 
         </div>
