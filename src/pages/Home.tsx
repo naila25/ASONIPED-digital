@@ -4,6 +4,8 @@ import Achievements from "../components/Landing/Achievements"
 import Testimonials from "../components/Landing/Testimonials"
 import VolunteersSection from "../components/volunteers/VolunteersSection"
 import Donaciones from "../components/Donation/Donaciones"
+import MostrarTalleres from "../components/Workshop/MostrarTalleres"
+
 
 const Home = () => {
   return (
@@ -13,6 +15,8 @@ const Home = () => {
         <AboutSection />
         <VolunteersSection />
         <Donaciones />
+        <MostrarTalleres />
+  
         <Achievements />
         <Testimonials />
       </div>

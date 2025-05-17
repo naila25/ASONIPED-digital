@@ -8,6 +8,7 @@ import AdminLogin from '../pages/admin/AdminLogin';
 import VolunteersSubDashboard from '../pages/volunteer/VolunteersSubDashboard';
 import DonacionesPage from '../pages/donaciones/Donaciones.page';
 import FormularioDonacion from '../components/Donation/FormularioDonacion';
+import FormularioMatricula from '../components/Workshop/FormularioMatricula';
 
 // Lazy-loaded admin pages with Suspense boundaries
 const AdminDashboard = lazy(() => import('../pages/admin/AdminDashboard'));
@@ -50,6 +51,13 @@ const formularioDonacionRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: 'donaciones/formulario',
   component: FormularioDonacion,
+});
+
+// Matricula route
+const matriculaRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: 'matricula',
+  component: FormularioMatricula,
 });
 
 // Admin routes with lazy loading and authentication check
@@ -97,6 +105,7 @@ const routeTree = rootRoute.addChildren([
   adminLoginRoute,
   donacionesRoute,
   formularioDonacionRoute,
+  matriculaRoute, // <-- Matricula route agregada aquí
   adminRoute.addChildren([
     volunteersAdminRoute.addChildren([
       volunteerOptionsRoute,
