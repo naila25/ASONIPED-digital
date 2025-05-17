@@ -2,7 +2,7 @@ import { communityLinks, platformLinks } from "../../constanst/index";
 
 const Footer = () => {
   return (
-    <footer className=" text-white bg-neutral-900 py-10 border-t border-neutral-700 mt-20">
+    <footer className="bg-blue-500 text-white py-10 border-t border-neutral-700 mt-20">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
         
         
