@@ -20,7 +20,7 @@ const Testimonials = () => {
                 {testimonials.map((testimonial, index) => (
                     <div key={index} className='w-full sm:w-1/2 lg:w-1/3 px-4 py-2'>
                         <div 
-                            className='rounded-md p-6 text-md text-black border border-neutral-800 font-thin'
+                            className='rounded-md p-6 text-md text-black border border-neutral-800 font-thin hover:scale-105 transition-transform duration-300'
                             style={{ backgroundColor: getRandomCreamColor() }}
                         >
                             <p>{testimonial.text}</p>

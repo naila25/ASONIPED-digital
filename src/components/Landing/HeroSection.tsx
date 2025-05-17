@@ -1,7 +1,7 @@
 const HeroSection = () => {
     return (
       <div className='min-h-screen w-full flex flex-col items-center justify-center pt-0'> 
-        <h1 className='text-4xl sm:text-6xl lg:text-7xl text-center tracking-wide px-4'>
+        <h1 className='text-4xl sm:text-6xl lg:text-7xl text-center tracking-wide px-4 max-w-5xl'>
           Inclusión Sin Límites, 
           <span className='bg-gradient-to-r from-orange-500 to-red-800 text-transparent bg-clip-text'>
             {" "}Oportunidades Para Todos
@@ -13,7 +13,7 @@ const HeroSection = () => {
         </p>
   
         <div className='flex justify-center my-10 flex-wrap gap-4'> 
-          <a href="#" className='bg-gradient-to-r from-orange-500 to-orange-800 py-3 px-6 rounded-md'>
+          <a href="#" className='bg-gradient-to-r text-white from-orange-500 to-orange-800 py-3 px-6 rounded-md'>
             Apoyar la Causa
           </a>
           <a href="#" className='py-3 px-6 border rounded-md'>
