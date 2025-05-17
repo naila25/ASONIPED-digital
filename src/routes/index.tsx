@@ -2,18 +2,18 @@
 import { createRouter, createRootRoute, createRoute } from '@tanstack/react-router';
 import { lazy, Suspense } from 'react';
 import App from '../App';
-import Volunteers from '../pages/volunteer/Volunteers';
-import Home from '../pages/Home';
-import AdminLogin from '../pages/admin/AdminLogin';
-import VolunteersSubDashboard from '../pages/volunteer/VolunteersSubDashboard';
-import DonacionesPage from '../pages/donaciones/Donaciones.page';
+import Volunteers from '../Pages/volunteer/Volunteers';
+import Home from '../Pages/Home';
+import AdminLogin from '../Pages/admin/AdminLogin';
+import VolunteersSubDashboard from '../Pages/volunteer/VolunteersSubDashboard';
+import DonacionesPage from '../Pages/donaciones/Donaciones.page';
 import FormularioDonacion from '../components/Donation/FormularioDonacion';
 import ConocenosSection from '../components/Landing/Conocenos';
 
 // Lazy-loaded admin pages with Suspense boundaries
-const AdminDashboard = lazy(() => import('../pages/admin/AdminDashboard'));
-const VolunteerOptionsPage = lazy(() => import('../pages/volunteer/VolunteerOptionsPage'));
-const VolunteerFormsPage = lazy(() => import('../pages/volunteer/VolunteerFormsPage'));
+const AdminDashboard = lazy(() => import('../Pages/admin/AdminDashboard'));
+const VolunteerOptionsPage = lazy(() => import('../Pages/volunteer/VolunteerOptionsPage'));
+const VolunteerFormsPage = lazy(() => import('../Pages/volunteer/VolunteerFormsPage'));
 
 // Root route - SINGLE SOURCE OF TRUTH
 const rootRoute = createRootRoute({
