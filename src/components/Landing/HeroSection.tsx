@@ -1,7 +1,7 @@
 const HeroSection = () => {
     return (
       <div className='min-h-screen w-full flex flex-col items-center justify-center pt-0'> 
-        <h1 className='text-4xl sm:text-6xl lg:text-7xl text-center tracking-wide px-4 max-w-5xl'>
+        <h1 className='text-orange-700 text-4xl sm:text-6xl lg:text-7xl text-center tracking-wide px-4 max-w-5xl'>
           Inclusión Sin Límites, 
           <span className='bg-gradient-to-r from-orange-500 to-red-800 text-transparent bg-clip-text'>
             {" "}Oportunidades Para Todos

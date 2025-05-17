@@ -2,7 +2,7 @@ import { communityLinks, platformLinks } from "../../constanst/index";
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-500 text-white py-10 border-t border-neutral-700 mt-20">
+    <footer className="bg-blue-500 text-white py-10 border-t border-white-700 mt-20">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
         
         
@@ -13,22 +13,22 @@ const Footer = () => {
 
         
         <div>
-          <h3 className="text-base font-semibold mb-4 border-b border-neutral-700 pb-2">Contacto</h3>
+          <h3 className="text-base font-semibold mb-4 border-b border-white-700 pb-2">Contacto</h3>
           <p className="flex items-center gap-2 mb-2"> Oficina: (506) 2685-1212</p>
           <p className="flex items-center gap-2"> asoniped@gmail.com</p>
         </div>
 
         
         <div>
-          <h3 className="text-base font-semibold mb-4 border-b border-neutral-700 pb-2">Ubicación</h3>
-          <p className="flex items-center gap-2 mb-2">📍 Nicoya</p>
-          <p>100 mts norte de Pisos La Bajura</p>
+          <h3 className="text-base font-semibold mb-4 border-b border-white-700 pb-2">Ubicación</h3>
+          <p className="flex items-center gap-2 mb-2"> Nicoya</p>
+          <p>100 mts norte de Pisos de la Bajura</p>
         </div>
 
         
         <div>
-          <h3 className="text-base font-semibold mb-4 border-b border-neutral-700 pb-2">Horarios</h3>
-          <p className="flex items-center gap-2 mb-2">🕒 Lunes a Viernes</p>
+          <h3 className="text-base font-semibold mb-4 border-b border-white-700 pb-2">Horarios</h3>
+          <p className="flex items-center gap-2 mb-2"> Lunes a Viernes</p>
           <p>7:00 am – 5:00 pm</p>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { Link } from '@tanstack/react-router';
 const AboutSection = () => {
     return (
       <div className="flex flex-col items-center mt-20 tracking-wide lg:mt-32">
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl text-center tracking-wide">
+        <h2 className="text-orange-700 text-4xl sm:text-5xl lg:text-6xl text-center tracking-wide">
           Conoce Más Sobre
           <span className="bg-gradient-to-r from-orange-500 to-red-800 text-transparent bg-clip-text">
             {" "}

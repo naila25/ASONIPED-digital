@@ -45,7 +45,9 @@ const FormularioDonacion = () => {
   });
 
   return (
+    
     <section className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+      
       <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">Formulario de Donación</h2>
         {status && (
