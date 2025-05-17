@@ -4,7 +4,7 @@ import { Link } from '@tanstack/react-router';
 const Donaciones: React.FC = () => {
   return (
     <section className="my-12 px-6 text-gray-800">
-      <h2 className="text-black text-5xl text-center mb-4 py-6">¿Por qué ayudar a ASONIPED?</h2>
+      <h2 className="text-orange-500 text-5xl text-center mb-4 py-6">¿Por qué ayudar a ASONIPED?</h2>
       <p className="max-w-3xl mx-auto text-center text-lg mb-12">
         Las donaciones a ASONIPED permiten ofrecer paseos recreativos a los niños, renovar el mobiliario como pupitres
         y mantener en buen estado las instalaciones de la organización. Cada aporte suma a mejorar su calidad de vida.

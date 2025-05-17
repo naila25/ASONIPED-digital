@@ -36,9 +36,9 @@ const AboutSection = () => {
             <div className="flex justify-center lg:justify-start gap-4 mt-8">
               <Link 
                 to="/conocenos"
-                className="border py-3 px-6 rounded-md text-sm hover:bg-orange-500 hover:text-white transition-colors"
+                className="bg-gradient-to-r text-white from-orange-500 to-orange-800 py-3 px-6 rounded-md text-sm hover:opacity-80 transition"
               >
-               Conocenos Mas
+               Conocenos Más
               </Link>
             </div>
           </div>
