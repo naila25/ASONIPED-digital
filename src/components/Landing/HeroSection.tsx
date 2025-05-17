@@ -13,10 +13,10 @@ const HeroSection = () => {
         </p>
   
         <div className='flex justify-center my-10 flex-wrap gap-4'> 
-          <a href="#" className='bg-gradient-to-r text-white from-orange-500 to-orange-800 py-3 px-6 rounded-md'>
+          <a href="Donaciones" className='bg-gradient-to-r text-white from-orange-500 to-orange-800 py-3 px-6 rounded-md'>
             Apoyar la Causa
           </a>
-          <a href="#" className='py-3 px-6 border rounded-md'>
+          <a href="Conocenos" className='py-3 px-6 border rounded-md'>
             Conocer Más
           </a>    
         </div>
