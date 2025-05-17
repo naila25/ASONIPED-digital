@@ -1,93 +1,231 @@
+import { useForm } from "@tanstack/react-form";
+import { useState } from "react";
 
 const FormularioDonacion = () => {
-    return (
-      <section className="my-12 px-6 text-gray-800">
-  {/* Métodos de Donación y Formulario */}
-        <div className="max-w-6xl mx-auto bg-white p-8 rounded-lg shadow-md">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            {/* Métodos */}
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Métodos de Donación</h3>
-              <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow">
-                <thead>
-                  <tr className="bg-blue-500 text-white">
-                    <th className="py-2 px-4 border">Tipo de donación</th>
-                    <th className="py-2 px-4 border">Método</th>
-                    <th className="py-2 px-4 border">Detalles</th>
-                  </tr>
-                </thead>
-                <tbody className="text-gray-800">
-                  <tr className="odd:bg-gray-100">
-                    <td className="py-2 px-4 border">Monetaria</td>
-                    <td className="py-2 px-4 border">SINPE Móvil</td>
-                    <td className="py-2 px-4 border">6000-XXXX (Cuenta ASONIDEP)</td>
-                  </tr>
-                  <tr className="odd:bg-gray-100">
-                    <td className="py-2 px-4 border">Monetaria</td>
-                    <td className="py-2 px-4 border">Transferencia bancaria</td>
-                    <td className="py-2 px-4 border">Cuenta BCR XXX-XXXXXXX</td>
-                  </tr>
-                  <tr className="odd:bg-gray-100">
-                    <td className="py-2 px-4 border">En especie</td>
-                    <td className="py-2 px-4 border">Electrodomésticos, etc.</td>
-                    <td className="py-2 px-4 border">Coordinar con Fernanda</td>
-                  </tr>
-                  <tr className="odd:bg-gray-100">
-                    <td className="py-2 px-4 border">Junta de Protección</td>
-                    <td className="py-2 px-4 border">Aportes institucionales</td>
-                    <td className="py-2 px-4 border">Ya integrados</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-  
-            {/* Formulario */}
-            <div className="bg-gray-50 p-6 rounded-lg shadow-inner">
-              <h3 className="text-xl font-semibold mb-4">Formulario de Donación</h3>
-              <form>
-                <div className="mb-4">
-                  <label className="block mb-1 font-medium">Nombre completo</label>
-                  <input type="text" className="w-full border border-gray-300 px-3 py-2 rounded shadow-sm" />
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-1 font-medium">Teléfono</label>
-                  <input type="text" className="w-full border border-gray-300 px-3 py-2 rounded shadow-sm" />
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-1 font-medium">Correo electrónico</label>
-                  <input type="email" className="w-full border border-gray-300 px-3 py-2 rounded shadow-sm" />
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-1 font-medium">Tipo de donación</label>
-                  <select className="w-full border border-gray-300 px-3 py-2 rounded shadow-sm">
-                    <option>Monetaria</option>
-                    <option>En especie</option>
-                  </select>
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-1 font-medium">Método</label>
-                  <input type="text" className="w-full border border-gray-300 px-3 py-2 rounded shadow-sm" />
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-1 font-medium">Monto o detalle</label>
-                  <input type="text" className="w-full border border-gray-300 px-3 py-2 rounded shadow-sm" />
-                </div>
-                <div className="mb-4">
-                  <label className="inline-flex items-center">
-                    <input type="checkbox" className="mr-2" />
-                    <span className="text-sm">Acepto que esta donación es para fortalecer ASONIDEP.</span>
-                  </label>
-                </div>
-                <button type="submit" className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-md shadow">
-                  Enviar mi donación
-                </button>
-              </form>
-            </div>
-  
+  const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+
+  const form = useForm({
+    defaultValues: {
+      nombre: "",
+      telefono: "",
+      correo: "",
+      tipo: "Monetaria",
+      metodo: "",
+      monto: "",
+      aceptar: false,
+    },
+    onSubmit: async ({ value }) => {
+      setStatus(null);
+      try {
+        const res = await fetch("https://api.jsonbin.io/v3/b/6825f9d88a456b79669e5167/latest", {
+          headers: {
+            "X-Master-Key": "$2a$10$BJMzT3zue5BZsi314H8t6u2C73TJwlouGy11ORUKAxfBQNZvrmFii",
+          },
+        });
+        if (!res.ok) throw new Error("Error al obtener registros anteriores");
+        const data = await res.json();
+        const registrosAnteriores = data.record || [];
+
+        const putRes = await fetch("https://api.jsonbin.io/v3/b/6825f9d88a456b79669e5167", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Master-Key": "$2a$10$BJMzT3zue5BZsi314H8t6u2C73TJwlouGy11ORUKAxfBQNZvrmFii",
+          },
+          body: JSON.stringify([...registrosAnteriores, value]),
+        });
+        if (!putRes.ok) throw new Error("Error al guardar la donación");
+        setStatus({ type: 'success', message: "Donación enviada con éxito." });
+        form.reset();
+      } catch (err) {
+        setStatus({ type: 'error', message: "Error al enviar la donación. Intenta de nuevo." });
+        console.error("Error al enviar:", err);
+      }
+    },
+  });
+
+  return (
+    <section className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+      <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
+        <h2 className="text-2xl font-bold text-gray-800 mb-6">Formulario de Donación</h2>
+        {status && (
+          <div className={`mb-4 p-3 rounded text-center ${status.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+            {status.message}
           </div>
-        </div>
-      </section>
-    )
-  }
-  export default FormularioDonacion;
+        )}
+        <form onSubmit={(e) => { e.preventDefault(); form.handleSubmit(); }}>
+          {/* Nombre */}
+          <form.Field
+            name="nombre"
+            validators={{
+              onChange: ({ value }) => !value ? "El nombre es requerido" : undefined
+            }}
+          >
+            {(field) => (
+              <div className="mb-4">
+                <label className="block text-gray-700 font-semibold mb-1">Nombre completo</label>
+                <input
+                  type="text"
+                  value={field.state.value}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                  onBlur={field.handleBlur}
+                  className={`w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${field.state.meta.errors.length ? 'border-red-500' : ''}`}
+                  disabled={form.state.isSubmitting}
+                />
+                {field.state.meta.errors[0] && <span className="text-red-500 text-xs">{field.state.meta.errors[0]}</span>}
+              </div>
+            )}
+          </form.Field>
+
+          {/* Teléfono */}
+          <form.Field
+            name="telefono"
+            validators={{
+              onChange: ({ value }) => !value ? "El teléfono es requerido" : undefined
+            }}
+          >
+            {(field) => (
+              <div className="mb-4">
+                <label className="block text-gray-700 font-semibold mb-1">Teléfono</label>
+                <input
+                  type="tel"
+                  value={field.state.value}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                  onBlur={field.handleBlur}
+                  className={`w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${field.state.meta.errors.length ? 'border-red-500' : ''}`}
+                  disabled={form.state.isSubmitting}
+                />
+                {field.state.meta.errors[0] && <span className="text-red-500 text-xs">{field.state.meta.errors[0]}</span>}
+              </div>
+            )}
+          </form.Field>
+
+          {/* Correo */}
+          <form.Field
+            name="correo"
+            validators={{
+              onChange: ({ value }) => !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value) ? "Correo inválido" : undefined
+            }}
+          >
+            {(field) => (
+              <div className="mb-4">
+                <label className="block text-gray-700 font-semibold mb-1">Correo electrónico</label>
+                <input
+                  type="email"
+                  value={field.state.value}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                  onBlur={field.handleBlur}
+                  className={`w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${field.state.meta.errors.length ? 'border-red-500' : ''}`}
+                  disabled={form.state.isSubmitting}
+                />
+                {field.state.meta.errors[0] && <span className="text-red-500 text-xs">{field.state.meta.errors[0]}</span>}
+              </div>
+            )}
+          </form.Field>
+
+          {/* Tipo de donación */}
+          <form.Field name="tipo">
+            {(field) => (
+              <div className="mb-4">
+                <label className="block text-gray-700 font-semibold mb-1">Tipo de donación</label>
+                <select
+                  value={field.state.value}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                  onBlur={field.handleBlur}
+                  className="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  disabled={form.state.isSubmitting}
+                >
+                  <option value="Monetaria">Monetaria</option>
+                  <option value="En especie">En especie</option>
+                </select>
+              </div>
+            )}
+          </form.Field>
+
+          {/* Método */}
+          <form.Field
+            name="metodo"
+            validators={{
+              onChange: ({ value }) => !value ? "El método es requerido" : undefined
+            }}
+          >
+            {(field) => (
+              <div className="mb-4">
+                <label className="block text-gray-700 font-semibold mb-1">Método</label>
+                <input
+                  type="text"
+                  value={field.state.value}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                  onBlur={field.handleBlur}
+                  className={`w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${field.state.meta.errors.length ? 'border-red-500' : ''}`}
+                  disabled={form.state.isSubmitting}
+                />
+                {field.state.meta.errors[0] && <span className="text-red-500 text-xs">{field.state.meta.errors[0]}</span>}
+              </div>
+            )}
+          </form.Field>
+
+          {/* Monto o detalle */}
+          <form.Field
+            name="monto"
+            validators={{
+              onChange: ({ value }) => !value ? "El monto o detalle es requerido" : undefined
+            }}
+          >
+            {(field) => (
+              <div className="mb-4">
+                <label className="block text-gray-700 font-semibold mb-1">Monto o detalle</label>
+                <input
+                  type="number"
+                  value={field.state.value}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                  onBlur={field.handleBlur}
+                  className={`w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${field.state.meta.errors.length ? 'border-red-500' : ''}`}
+                  disabled={form.state.isSubmitting}
+                />
+                {field.state.meta.errors[0] && <span className="text-red-500 text-xs">{field.state.meta.errors[0]}</span>}
+              </div>
+            )}
+          </form.Field>
+
+          {/* Aceptar */}
+          <form.Field
+            name="aceptar"
+            validators={{
+              onChange: ({ value }) => !value ? "Debes aceptar para continuar" : undefined
+            }}
+          >
+            {(field) => (
+              <div className="mb-4 flex items-start">
+                <input
+                  id="aceptar"
+                  type="checkbox"
+                  checked={field.state.value}
+                  onChange={(e) => field.handleChange(e.target.checked)}
+                  onBlur={field.handleBlur}
+                  className="mr-2 mt-1"
+                  disabled={form.state.isSubmitting}
+                />
+                <label htmlFor="aceptar" className="text-gray-700 text-sm">
+                  Acepto que esta donación es para fortalecer ASONIDEP.
+                </label>
+                {field.state.meta.errors[0] && <span className="text-red-500 text-xs ml-2">{field.state.meta.errors[0]}</span>}
+              </div>
+            )}
+          </form.Field>
+
+          {/* Botón */}
+          <button
+            type="submit"
+            className="w-full bg-green-500 text-white font-semibold px-4 py-2 rounded hover:bg-green-600 transition-colors disabled:opacity-60"
+            disabled={form.state.isSubmitting}
+          >
+            {form.state.isSubmitting ? "Enviando..." : "Enviar mi donación"}
+          </button>
+        </form>
+      </div>
+    </section>
+  );
+};
+
+export default FormularioDonacion;
