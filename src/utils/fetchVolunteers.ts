@@ -35,10 +35,10 @@ const fetchWithRetry = async (url: string, options: RequestInit, retries = JSONB
 export const fetchVolunteers = async (page = 1, limit = 10): Promise<ApiResponse<VolunteerOption[]>> => {
   try {
     const response = await fetchWithRetry(
-      `${JSONBIN_CONFIG.API_URL}/${JSONBIN_CONFIG.BINS.VOLUNTEER_OPTIONS}`,
+      `${JSONBIN_CONFIG.API_URL}/${JSONBIN_CONFIG.ACCOUNTS.VOLUNTEER.BINS.OPTIONS}`,
       {
         headers: {
-          'X-Master-Key': JSONBIN_CONFIG.MASTER_KEY,
+          'X-Master-Key': JSONBIN_CONFIG.ACCOUNTS.VOLUNTEER.MASTER_KEY,
         },
       }
     );
@@ -50,13 +50,11 @@ export const fetchVolunteers = async (page = 1, limit = 10): Promise<ApiResponse
     const data = await response.json();
     const options = data.record.options || [];
 
-    // Validate each option
     const validOptions = options.filter(validateVolunteerOption);
     if (validOptions.length !== options.length) {
       console.warn('Some volunteer options were invalid and were filtered out');
     }
 
-    // Implement pagination
     const start = (page - 1) * limit;
     const end = start + limit;
     const paginatedOptions = validOptions.slice(start, end);
@@ -81,19 +79,18 @@ export const fetchVolunteers = async (page = 1, limit = 10): Promise<ApiResponse
 
 export const updateVolunteerOptions = async (options: VolunteerOption[]): Promise<ApiResponse<void>> => {
   try {
-    // Validate all options before updating
     const invalidOptions = options.filter(option => !validateVolunteerOption(option));
     if (invalidOptions.length > 0) {
       throw new Error('Some options are invalid');
     }
 
     const response = await fetchWithRetry(
-      `${JSONBIN_CONFIG.API_URL}/${JSONBIN_CONFIG.BINS.VOLUNTEER_OPTIONS}`,
+      `${JSONBIN_CONFIG.API_URL}/${JSONBIN_CONFIG.ACCOUNTS.VOLUNTEER.BINS.OPTIONS}`,
       {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'X-Master-Key': JSONBIN_CONFIG.MASTER_KEY,
+          'X-Master-Key': JSONBIN_CONFIG.ACCOUNTS.VOLUNTEER.MASTER_KEY,
         },
         body: JSON.stringify({ options }),
       }
@@ -116,7 +113,7 @@ export const updateVolunteerOptions = async (options: VolunteerOption[]): Promis
 
 export const addVolunteerOption = async (option: Omit<VolunteerOption, 'id'>): Promise<ApiResponse<VolunteerOption>> => {
   try {
-    const options = await fetchVolunteers(1, 1000); // Get all options
+    const options = await fetchVolunteers(1, 1000);
     if (options.error) {
       throw new Error(options.error.message);
     }
@@ -126,7 +123,6 @@ export const addVolunteerOption = async (option: Omit<VolunteerOption, 'id'>): P
       id: Date.now().toString(),
     };
 
-    // Validate the new option
     if (!validateVolunteerOption(newOption)) {
       throw new Error('Invalid option data');
     }
@@ -149,7 +145,7 @@ export const addVolunteerOption = async (option: Omit<VolunteerOption, 'id'>): P
 
 export const deleteVolunteerOption = async (id: string): Promise<ApiResponse<void>> => {
   try {
-    const options = await fetchVolunteers(1, 1000); // Get all options
+    const options = await fetchVolunteers(1, 1000);
     if (options.error) {
       throw new Error(options.error.message);
     }

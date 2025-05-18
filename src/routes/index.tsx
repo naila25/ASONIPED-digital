@@ -10,10 +10,11 @@ import DonacionesPage from '../pages/donaciones/Donaciones.page';
 import FormularioDonacion from '../components/Donation/FormularioDonacion';
 import ConocenosSection from '../components/Landing/Conocenos';
 
-// Lazy-loaded admin pages with Suspense boundaries
+// Lazy-loaded admin Pages with Suspense boundaries
 const AdminDashboard = lazy(() => import('../pages/admin/AdminDashboard'));
 const VolunteerOptionsPage = lazy(() => import('../pages/volunteer/VolunteerOptionsPage'));
 const VolunteerFormsPage = lazy(() => import('../pages/volunteer/VolunteerFormsPage'));
+const DonationForms = lazy(() => import('../pages/admin/DonationForms'));
 
 // Root route - SINGLE SOURCE OF TRUTH
 const rootRoute = createRootRoute({
@@ -77,6 +78,16 @@ const volunteersAdminRoute = createRoute({
   component: VolunteersSubDashboard,
 });
 
+const donationsAdminRoute = createRoute({
+  getParentRoute: () => adminRoute,
+  path: 'donations',
+  component: () => (
+    <Suspense fallback={<div style={{color:'red',fontSize:'2rem',textAlign:'center'}}>Loading DonationForms...</div>}>
+      <DonationForms />
+    </Suspense>
+  ),
+});
+
 const volunteerOptionsRoute = createRoute({
   getParentRoute: () => volunteersAdminRoute,
   path: 'options',
@@ -109,7 +120,8 @@ const routeTree = rootRoute.addChildren([
     volunteersAdminRoute.addChildren([
       volunteerOptionsRoute,
       volunteerFormsRoute
-    ])
+    ]),
+    donationsAdminRoute
   ])
 ]);
 
