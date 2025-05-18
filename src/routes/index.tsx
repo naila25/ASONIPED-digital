@@ -15,6 +15,7 @@ const AdminDashboard = lazy(() => import('../pages/admin/AdminDashboard'));
 const VolunteerOptionsPage = lazy(() => import('../pages/volunteer/VolunteerOptionsPage'));
 const VolunteerFormsPage = lazy(() => import('../pages/volunteer/VolunteerFormsPage'));
 const DonationForms = lazy(() => import('../pages/admin/DonationForms'));
+const AttendancePage = lazy(() => import('../pages/admin/AttendancePage'));
 
 // Root route - SINGLE SOURCE OF TRUTH
 const rootRoute = createRootRoute({
@@ -88,6 +89,16 @@ const donationsAdminRoute = createRoute({
   ),
 });
 
+const attendanceAdminRoute = createRoute({
+  getParentRoute: () => adminRoute,
+  path: 'attendance',
+  component: () => (
+    <Suspense fallback={<div style={{color:'red',fontSize:'2rem',textAlign:'center'}}>Loading AttendancePage...</div>}>
+      <AttendancePage />
+    </Suspense>
+  ),
+});
+
 const volunteerOptionsRoute = createRoute({
   getParentRoute: () => volunteersAdminRoute,
   path: 'options',
@@ -121,7 +132,8 @@ const routeTree = rootRoute.addChildren([
       volunteerOptionsRoute,
       volunteerFormsRoute
     ]),
-    donationsAdminRoute
+    donationsAdminRoute,
+    attendanceAdminRoute
   ])
 ]);
 
@@ -131,9 +143,20 @@ let router: any;
 if (!router) {
   router = createRouter({
     routeTree,
-    // Optional: Add default preloading/staleTime configurations
     defaultPreload: 'intent',
-    defaultPreloadStaleTime: 0
+    defaultPreloadStaleTime: 0,
+    defaultErrorComponent: ({ error }) => (
+      <div className="text-center p-4">
+        <h1 className="text-2xl font-bold text-red-600">Error</h1>
+        <p className="text-gray-700">{error.message}</p>
+      </div>
+    ),
+    defaultNotFoundComponent: () => (
+      <div className="text-center p-4">
+        <h1 className="text-2xl font-bold text-red-600">Page Not Found</h1>
+        <p className="text-gray-700">The page you're looking for doesn't exist.</p>
+      </div>
+    )
   });
 }
 
