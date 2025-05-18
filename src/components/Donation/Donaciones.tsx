@@ -16,17 +16,17 @@ const Donaciones: React.FC = () => {
           {
             title: 'Paseos y actividades',
             description: 'Creamos experiencias recreativas para que los chicos disfruten, aprendan y creen recuerdos inolvidables fuera del aula.',
-            image: '/path-to-image1.jpg',
+            image: 'https://centrodeinformacion.manizales.gov.co/wp-content/uploads/2021/11/Las-secretarias-de-Gobierno-y-Desarrollo-Social-realizan-actividades-ludicas-y-recreativas-dirigidas-a-mujeres-de-Manizales.jpeg',
           },
           {
             title: 'Compra de pupitres',
             description: 'Renovamos el mobiliario para garantizar que todos tengan un espacio cómodo y digno para estudiar y desarrollarse.',
-            image: '/path-to-image2.jpg',
+            image: 'https://ofistim.com.tr/wp-content/webp-express/webp-images/uploads/2024/01/pupitres-escolares.jpeg.webp',
           },
           {
             title: 'Mantenimiento institucional',
             description: 'Contribuyes al buen funcionamiento de ASONIDEP, asegurando espacios limpios, seguros y adecuados para todos.',
-            image: '/path-to-image3.jpg',
+            image: 'https://factorinmobiliarioedifikarq.wordpress.com/wp-content/uploads/2016/02/mantenimiento.jpg?w=820&h=312&crop=1',
           },
         ].map((item, index) => (
           <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col">
